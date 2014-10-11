@@ -10,11 +10,28 @@ using System.Windows.Forms;
 
 namespace CustomerProjectInf
 {
-    public partial class Form1 : Form
+     
+    public partial class LoginScreen : Form
     {
-        public Form1()
+
+        public LoginScreen()
         {
             InitializeComponent();
+        }
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+            String username = usernameTextbox.Text;
+            String password = passwordTextbox.Text;
+
+            if (username.Equals("Admin") && password.Equals("password"))
+            {
+                MessageBox.Show("Login Sucess");
+            }
+            else
+            {
+                passwordTextbox.Clear();
+                passwordTextbox.Focus();
+            }
         }
     }
 }
