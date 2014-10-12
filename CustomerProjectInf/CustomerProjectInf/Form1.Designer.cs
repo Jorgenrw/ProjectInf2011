@@ -1,6 +1,6 @@
 ﻿namespace CustomerProjectInf
 {
-    partial class LoginScreen
+    partial class LoginScreenForm
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,6 @@
             this.usernameTextbox.Name = "usernameTextbox";
             this.usernameTextbox.Size = new System.Drawing.Size(100, 20);
             this.usernameTextbox.TabIndex = 0;
-            this.usernameTextbox.TextChanged += new System.EventHandler(this.usernameTextbox_TextChanged);
             // 
             // usernameLabel
             // 
@@ -68,7 +67,6 @@
             this.passwordTextbox.PasswordChar = '*';
             this.passwordTextbox.Size = new System.Drawing.Size(100, 20);
             this.passwordTextbox.TabIndex = 3;
-            this.passwordTextbox.TextChanged += new System.EventHandler(this.passwordTextbox_TextChanged);
             // 
             // loginButton
             // 
@@ -80,7 +78,7 @@
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
-            // LoginScreen
+            // LoginScreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,8 +88,8 @@
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.usernameTextbox);
-            this.Name = "LoginScreen";
-            this.Text = "Form1";
+            this.Name = "LoginScreenForm";
+            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 

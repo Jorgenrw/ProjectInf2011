@@ -11,21 +11,38 @@ using System.Windows.Forms;
 namespace CustomerProjectInf
 {
      
-    public partial class LoginScreen : Form
+    public partial class LoginScreenForm : Form
     {
-
-        public LoginScreen()
+        private String username;
+        private String password;
+        public LoginScreenForm()
         {
             InitializeComponent();
         }
-        private void loginButton_Click(object sender, EventArgs e)
+        public Boolean checkLogin(String username, String password)
         {
-            String username = usernameTextbox.Text;
-            String password = passwordTextbox.Text;
+            this.username = username;
+            this.password = password;
+
+            username = usernameTextbox.Text;
+            password = passwordTextbox.Text;
 
             if (username.Equals("Admin") && password.Equals("password"))
             {
-                MessageBox.Show("Login Sucess");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+            if (checkLogin(username, password) == true)
+            {
+                adminForm newForm = new adminForm();
+                this.Visible = false;
+                newForm.Show();
             }
             else
             {
