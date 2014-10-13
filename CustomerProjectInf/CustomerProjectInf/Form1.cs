@@ -18,6 +18,7 @@ namespace CustomerProjectInf
         public LoginScreenForm()
         {
             InitializeComponent();
+            this.passwordTextbox.KeyPress += new KeyPressEventHandler(Keypressed);
         }
         public Boolean checkLogin(String username, String password)
         {
@@ -36,6 +37,13 @@ namespace CustomerProjectInf
                 return false;
             }
         }
+        private void Keypressed(object sender, KeyPressEventArgs key)
+        {
+            if (key.KeyChar == (char)13)
+            {
+                loginButton_Click(sender, key);
+            }
+        }
         private void loginButton_Click(object sender, EventArgs e)
         {
             if (checkLogin(username, password) == true)
@@ -48,6 +56,7 @@ namespace CustomerProjectInf
             {
                 passwordTextbox.Clear();
                 passwordTextbox.Focus();
+                loginALabel.Visible = true;
             }
         }
     }

@@ -33,6 +33,7 @@
             this.passwordLabel = new System.Windows.Forms.Label();
             this.passwordTextbox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
+            this.loginALabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // usernameTextbox
@@ -78,11 +79,22 @@
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
+            // loginALabel
+            // 
+            this.loginALabel.ForeColor = System.Drawing.Color.Red;
+            this.loginALabel.Location = new System.Drawing.Point(89, 186);
+            this.loginALabel.Name = "loginALabel";
+            this.loginALabel.Size = new System.Drawing.Size(161, 51);
+            this.loginALabel.TabIndex = 5;
+            this.loginALabel.Text = "Please select the proper Username:\"Admin\", and the proper Password :\"password\"";
+            this.loginALabel.Visible = false;
+            // 
             // LoginScreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.loginALabel);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordTextbox);
             this.Controls.Add(this.passwordLabel);
@@ -102,6 +114,7 @@
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.TextBox passwordTextbox;
         private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.Label loginALabel;
 
     }
 }
