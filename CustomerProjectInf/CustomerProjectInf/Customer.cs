@@ -8,19 +8,21 @@ namespace CustomerProjectInf
 {
     public class Customer
     {
-        private int Id;
+        private string Id;
         private string name;
         private int phone;
         private string Adress;
+        private bool blacklisted;
 
-        public Customer(int id, string name, int phone, string adress)
+        public Customer(string id, string name, int phone, string adress, bool blacklisted)
         {
             this.Id = id;
             this.name = name;
             this.phone = phone;
             this.Adress = adress;
+            blacklisted = false;
         }
-        public int customerId
+        public string customerId
         {
             get
             {
@@ -62,6 +64,17 @@ namespace CustomerProjectInf
             set
             {
                 // set customer address here
+            }
+        }
+        public bool customerBlacklister
+        {
+            get
+            {
+                return blacklisted;
+            }
+            set
+            {
+                //set blacklist customer
             }
         }
         
