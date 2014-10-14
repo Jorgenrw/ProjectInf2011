@@ -28,7 +28,11 @@ namespace CustomerProjectInf
             username = usernameTextbox.Text;
             password = passwordTextbox.Text;
 
-            if (username.Equals("Admin") && password.Equals("password"))
+            if (username.Equals("Jørgen") && password.Equals("password"))
+            {
+                return true;
+            }
+            else if (username.Equals("Qamran") && password.Equals("password"))
             {
                 return true;
             }

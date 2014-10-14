@@ -82,11 +82,12 @@
             // loginALabel
             // 
             this.loginALabel.ForeColor = System.Drawing.Color.Red;
-            this.loginALabel.Location = new System.Drawing.Point(89, 186);
+            this.loginALabel.Location = new System.Drawing.Point(100, 186);
             this.loginALabel.Name = "loginALabel";
-            this.loginALabel.Size = new System.Drawing.Size(161, 51);
+            this.loginALabel.Size = new System.Drawing.Size(124, 66);
             this.loginALabel.TabIndex = 5;
-            this.loginALabel.Text = "Please select the proper Username:\"Admin\", and the proper Password :\"password\"";
+            this.loginALabel.Text = "Please select the proper Username:\"Qamran\" or \"Jørgen\", and the proper Password:\"" +
+    "password\" PS: Case sensetive!!";
             this.loginALabel.Visible = false;
             // 
             // LoginScreenForm
