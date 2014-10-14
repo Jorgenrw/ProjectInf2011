@@ -37,6 +37,10 @@ namespace CustomerProjectInf
                 return false;
             }
         }
+        public string getUsername()
+        {
+            return username;
+        }
         private void Keypressed(object sender, KeyPressEventArgs key)
         {
             if (key.KeyChar == (char)13)
@@ -48,9 +52,11 @@ namespace CustomerProjectInf
         {
             if (checkLogin(username, password) == true)
             {
+                //adminForm newForm = new adminForm(usernameTextbox.Text);
                 adminForm newForm = new adminForm();
                 this.Visible = false;
                 newForm.Show();
+                
             }
             else
             {
