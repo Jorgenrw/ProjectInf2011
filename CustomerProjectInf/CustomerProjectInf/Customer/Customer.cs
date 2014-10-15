@@ -30,7 +30,7 @@ namespace CustomerProjectInf
             }
             set
             {
-                //set customer Id here
+                Id = value;
             }
         }
         public string customerName
@@ -41,7 +41,7 @@ namespace CustomerProjectInf
             }
             set
             {
-                //set customer name here
+                name = value;
             }
         }
         public int customerPhone
@@ -52,7 +52,7 @@ namespace CustomerProjectInf
             }
             set
             {
-                // set customer phone here
+                phone = value;
             }
         }
         public string customerAdress
@@ -63,7 +63,7 @@ namespace CustomerProjectInf
             }
             set
             {
-                // set customer address here
+                Adress = value;
             }
         }
         public bool customerBlacklister
@@ -74,7 +74,7 @@ namespace CustomerProjectInf
             }
             set
             {
-                //set blacklist customer
+                blacklisted = value;
             }
         }
         
