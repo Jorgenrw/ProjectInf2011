@@ -22,7 +22,8 @@ namespace CustomerProjectInf
         private RectangleF tabStringVCO;
         private RectangleF tabStringI;
 
-        private Customer customer;
+        private Customer.Customer customer;
+        private Customer.CustomerController customerController;
         private string curUsername = string.Empty;
         //private ArrayList Customer = new ArrayList();
         private Timer timerLabel;
@@ -61,6 +62,7 @@ namespace CustomerProjectInf
             searchCOTextbox.KeyPress += new KeyPressEventHandler(searchKeypressedCO);
             //<--end
         }
+        #region Form Section
         private void drawStringTab(object sender, DrawItemEventArgs e)
         {
             Graphics graphics = e.Graphics;
@@ -94,34 +96,7 @@ namespace CustomerProjectInf
             Rectangle bounds = e.Bounds;
             bounds.Inflate(-15, 0);
             e.Graphics.DrawString(adminPageTabControl.TabPages[e.Index].Text, font, brushTabText, bounds);
-            /*if (adminPageTabControl.TabPages[0] == adminPageTab)
-            {
-                graphics.DrawString(this.adminPageTabControl.TabPages[0].Text, this.Font, new SolidBrush(Color.Black), tabStringAdmin);
-            }
-            if (adminPageTabControl.TabPages[1] == createCustomerTab)
-            {
-                graphics.DrawString(this.adminPageTabControl.TabPages[1].Text, this.Font, new SolidBrush(Color.Black), tabStringCC);
-            }
-            if (adminPageTabControl.TabPages[2] == viewCustomerTab)
-            {
-                graphics.DrawString(this.adminPageTabControl.TabPages[2].Text, this.Font, new SolidBrush(Color.Black), tabStringVC);
-            }
-            if (adminPageTabControl.TabPages[3] == editCustomerTab)
-            {
-                graphics.DrawString(this.adminPageTabControl.TabPages[3].Text, this.Font, new SolidBrush(Color.Black), tabStringEC);
-            }
-            if (adminPageTabControl.TabPages[4] == createCustomerOrderTab)
-            {
-                graphics.DrawString(this.adminPageTabControl.TabPages[4].Text, this.Font, new SolidBrush(Color.Black), tabStringCO);
-            }
-            if (adminPageTabControl.TabPages[5] == viewCustomerOrderTab)
-            {
-                graphics.DrawString(this.adminPageTabControl.TabPages[5].Text, this.Font, new SolidBrush(Color.Black), tabStringVCO);
-            }
-            if (adminPageTabControl.TabPages[6] == inventoryTab)
-            {
-                graphics.DrawString(this.adminPageTabControl.TabPages[6].Text, this.Font, new SolidBrush(Color.Black), tabStringI);
-            }*/
+            
         }
         //method for setting the adminpagetab string to give valid output to the clerk what he did
         public void setAdminTabLabelString(string setString)
@@ -200,7 +175,19 @@ namespace CustomerProjectInf
             }
 
         }
-        //Customer Create Section ->>
+        #endregion
+        #region Customer Create section
+        private Customer.Customer PopulateObject()
+        {
+            
+
+            customer = new Customer.Customer();
+            customer.customerId = idCCTextbox.Text;
+            customer.customerName = nameCCTextbox.Text;
+            customer.customerAdress = adressCCTextbox.Text;
+            
+            return customer;
+        }
         private void submitCCButton_Click(object sender, EventArgs e)
         {
             //if the entries label are visable, then we can submit the customer to the database.
@@ -208,6 +195,13 @@ namespace CustomerProjectInf
             {
                 //Create customer method with connection to the database
                 //add customer with all the text in every textbox to the database.
+                
+                        customer = PopulateObject();
+                        customer = new Customer.Customer();
+                        customerController = new Customer.CustomerController();
+                        customerController.ADD(customer);
+                        
+                
                 setAdminTabLabelString("Customer " + "'customerid' " + "Created");
                 
                 adminPageTabControl.SelectedTab = adminPageTab;
@@ -268,9 +262,9 @@ namespace CustomerProjectInf
                 //SyntaxCheck.CheckPath(); sadsa
             }
         }
-        //<<- End customer create section
+        #endregion
 
-        //Start View customer section ->>
+        #region View customer section
         private void searchKeypressedVC(object sender, KeyPressEventArgs key)
         {
             if (key.KeyChar == (char)13)
@@ -296,9 +290,9 @@ namespace CustomerProjectInf
             adminPageTabControl.SelectedTab = adminPageTab;
             setAdminTabLabelString("You have just viewed a customer");
         }
-        //<<- end View customer section
-        
-        //Edit customer section ->>
+        #endregion
+
+        #region Edit customer section
         private void searchKeypressedEC(object sender, KeyPressEventArgs key)
         {
             if (key.KeyChar == (char)13)
@@ -381,11 +375,9 @@ namespace CustomerProjectInf
             */
             searchECTextbox.Enabled = false; 
         }
-        //<--end Edit customer section
+        #endregion
 
-        //Create customer order section ->>
-
-        //<--end Create customer order section
+        #region Create customer order section
         //Select customer in listbox
         private void customerCOListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -456,7 +448,8 @@ namespace CustomerProjectInf
             //adminPageTabControl.SelectedTab = adminPageTab;
             //setAdminTabLabelString("You have not created an order");
         }
-        //View customer order section ->>
+#endregion
+        #region View customer order section
         private void okVCOButton_Click(object sender, EventArgs e)
         {
             //Navigate you to adminpagetab with relevent output to whatever you did
@@ -484,9 +477,9 @@ namespace CustomerProjectInf
         {
 
         }
-        //<--end View customer order section
+        #endregion
 
-        //Inventory section ->>
+        #region Inventory
         private void okInventoryButton_Click(object sender, EventArgs e)
         {
             adminPageTabControl.SelectedTab = adminPageTab;
@@ -497,7 +490,7 @@ namespace CustomerProjectInf
         {
             //make the list enable = false;
         }
-        //<--end Inventory section
+        #endregion
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 

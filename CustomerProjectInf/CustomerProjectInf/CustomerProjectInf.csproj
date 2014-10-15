@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer\Customer.cs" />
+    <Compile Include="Customer\CustomerController.cs" />
     <Compile Include="DatabaseLayer\CustomerDatabase.cs" />
     <Compile Include="DatabaseLayer\Database.cs" />
     <Compile Include="PresentationLayer\LoginScreenForm.cs">
