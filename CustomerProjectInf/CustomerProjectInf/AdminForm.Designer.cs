@@ -1,6 +1,6 @@
 ﻿namespace CustomerProjectInf
 {
-    partial class adminForm
+    partial class AdminForm
     {
         /// <summary>
         /// Required designer variable.

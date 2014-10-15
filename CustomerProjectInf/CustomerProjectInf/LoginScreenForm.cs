@@ -57,7 +57,7 @@ namespace CustomerProjectInf
             if (checkLogin(username, password) == true)
             {
                 //adminForm newForm = new adminForm(usernameTextbox.Text);
-                adminForm newForm = new adminForm();
+                AdminForm newForm = new AdminForm();
                 this.Visible = false;
                 newForm.Show();
                 

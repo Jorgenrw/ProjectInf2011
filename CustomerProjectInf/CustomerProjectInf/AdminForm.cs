@@ -11,7 +11,7 @@ using System.Windows.Forms;
 //import customer class
 namespace CustomerProjectInf
 {
-    public partial class adminForm : Form
+    public partial class AdminForm : Form
     {
         //Drawing properties for the drawing of the tabs.
         private RectangleF tabStringAdmin;
@@ -27,7 +27,7 @@ namespace CustomerProjectInf
         //private ArrayList Customer = new ArrayList();
         private Timer timerLabel;
         //public adminForm(string username)
-        public adminForm()
+        public AdminForm()
         {
             InitializeComponent();
             //this.curUsername = username;
@@ -167,36 +167,36 @@ namespace CustomerProjectInf
         {
             if(adminPageTabControl.SelectedIndex == 0)
             {
-                adminForm.ActiveForm.Text = "Admin Page";
+                AdminForm.ActiveForm.Text = "Admin Page";
             }
             if (adminPageTabControl.SelectedIndex == 1)
             {
-                adminForm.ActiveForm.Text = "Create customer";
+                AdminForm.ActiveForm.Text = "Create customer";
             }
             if (adminPageTabControl.SelectedIndex == 2)
             {
-                adminForm.ActiveForm.Text = "View Customer";
+                AdminForm.ActiveForm.Text = "View Customer";
             }
             if (adminPageTabControl.SelectedIndex == 3)
             {
-                adminForm.ActiveForm.Text = "Edit Customer";
+                AdminForm.ActiveForm.Text = "Edit Customer";
             }
             if (adminPageTabControl.SelectedIndex == 4)
             {
-                adminForm.ActiveForm.Text = "Create customer order";
+                AdminForm.ActiveForm.Text = "Create customer order";
                 searchCOLabel.Visible = true;
                 searchCOTextbox.Visible = true;
                 
             }
             if (adminPageTabControl.SelectedIndex == 5)
             {
-                adminForm.ActiveForm.Text = "View customer order";
+                AdminForm.ActiveForm.Text = "View customer order";
                 //Enable the searchbox, when this tab is selected
                 searchVCTextbox.Enabled = true;
             }
             if (adminPageTabControl.SelectedIndex == 6)
             {
-                adminForm.ActiveForm.Text = "Inventory";
+                AdminForm.ActiveForm.Text = "Inventory";
             }
 
         }
