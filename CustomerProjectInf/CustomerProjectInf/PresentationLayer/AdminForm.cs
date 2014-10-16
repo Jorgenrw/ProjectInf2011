@@ -182,8 +182,8 @@ namespace CustomerProjectInf
             
 
             customer = new Customer();
-            customer.customerId = idCCTextbox.Text;
-            customer.customerName = nameCCTextbox.Text;
+            customer.CustomerID = idCCTextbox.Text;
+            customer.CustomerName = nameCCTextbox.Text;
             customer.customerAdress = adressCCTextbox.Text;
             
             return customer;
@@ -276,11 +276,11 @@ namespace CustomerProjectInf
         private void searchVCListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //get customer from database if("customer.selected"){blablabla}
-              idShowVCLabel.Text = customer.customerId;
-              nameShowVCLabel.Text = customer.customerName;
-              phoneShowVCLabel.Text = customer.customerPhone.ToString();
+              idShowVCLabel.Text = customer.CustomerID;
+              nameShowVCLabel.Text = customer.CustomerName;
+              phoneShowVCLabel.Text = customer.CustomerPhone.ToString();
               adressShowVCLabel.Text = customer.customerAdress;
-              blacklistShowVCLabel.Text = customer.customerBlacklister.ToString();
+              blacklistShowVCLabel.Text = customer.CustomerBlacklisted.ToString();
               //disable the searchtextbox after customer clicked
               searchVCListbox.Enabled = false;
               
@@ -366,9 +366,9 @@ namespace CustomerProjectInf
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if this customer is selected bla bla bla
-            idECTextbox.Text = customer.customerId;
-            nameECTextbox.Text = customer.customerName;
-            phoneECTextbox.Text = customer.customerPhone.ToString();
+            idECTextbox.Text = customer.CustomerID;
+            nameECTextbox.Text = customer.CustomerName;
+            phoneECTextbox.Text = customer.CustomerPhone.ToString();
             adressECTextbox.Text = customer.customerAdress;
             /*in the time given @ this project, we disable this to make the functionality easy.
             *but if it was a real project other functionality would be added, ask for explanation.

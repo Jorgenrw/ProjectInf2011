@@ -10,13 +10,13 @@ namespace CustomerProjectInf.CustomerNameSpace
 {
     class CustomerController
     {
-        private  CustomerDatabase customerDb;
+        private  CustomerDatabase customerDB;
         private Collection<Customer> Customers;
 
          public CustomerController()
         {
-            customerDb = new CustomerDatabase();
-            Customers = customerDb.AllCustomers;
+            customerDB = new CustomerDatabase();
+            Customers = customerDB.AllCustomers;
         }
         public Collection<Customer> AllCustomers
         {
@@ -28,7 +28,7 @@ namespace CustomerProjectInf.CustomerNameSpace
         public void ADD(Customer customer)
         {
             //Write code to add employee. Remember to use the DatabaseADD method from the EmployeeDB class
-            customerDb.DatabaseAdd(customer);
+            customerDB.DatabaseAdd(customer);
             //Also add the employee to the employees collection?
             
             Customers.Add(customer);
@@ -36,10 +36,10 @@ namespace CustomerProjectInf.CustomerNameSpace
         public Customer FindByID(string idValue)
         {
             int position = 0;
-            bool found = (idValue == Customers[position].customerId);
+            bool found = (idValue == Customers[position].CustomerID);
             while (!found && position < Customers.Count)
             {
-                found = (idValue == Customers[position].customerId);
+                found = (idValue == Customers[position].CustomerID);
                 if (!found)
                 {
                     position += 1;

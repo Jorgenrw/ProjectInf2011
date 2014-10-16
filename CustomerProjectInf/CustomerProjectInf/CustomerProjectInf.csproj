@@ -59,10 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerNameSpace\Customer.cs" />
-    <Compile Include="CustomerNameSpace\CustomerController.cs" />
+    <Compile Include="Customers\Customer.cs" />
+    <Compile Include="Customers\CustomerController.cs" />
     <Compile Include="DatabaseLayer\CustomerDatabase.cs" />
-    <Compile Include="DatabaseLayer\Database.cs" />
+    <Compile Include="DatabaseLayer\DB.cs" />
     <Compile Include="PresentationLayer\LoginScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>

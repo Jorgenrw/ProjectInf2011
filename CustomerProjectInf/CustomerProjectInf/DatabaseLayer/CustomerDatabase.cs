@@ -3,49 +3,46 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
+//namespaces
 using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
-using CustomerProjectInf.Properties;
-using CustomerProjectInf.CustomerNameSpace;
+using CustomerProjectInf.Customers;
+
 
 namespace CustomerProjectInf.DatabaseLayer
 {
-    class CustomerDatabase
+    public class CustomerDB : DB
     {
+        //Data members
         private static string table1 = "CustomerTable";
         private string sql_SELECT1 = "SELECT * FROM " + table1;
-        private string strConn = Settings.Default.PoppelDatabaseConnectionString;
 
-        private Collection<CustomerNameSpace.Customer> customers = new Collection<CustomerNameSpace.Customer>();
-        private SqlConnection cnMain;//this is so fucking wrong!
+        private Collection<Customer> customers = new Collection<Customer>();
 
-        public CustomerDatabase(): base()
+
+        //Constructors
+        public CustomerDB()
+            : base()
         {
-            ReadDataFromTable(sql_SELECT1, table1);   //Get the data from ALL 3 tables
-            //same for other two Tables 
-            
-            
-            if (cnMain == null)
-            {
-                Console.Out.Write("Nothing is in hewre"); 
-            }
-  
+            ReadDataFromTable(sql_SELECT1, table1);
         }
-        public Collection<CustomerNameSpace.Customer> AllCustomers
+
+        public Collection<Customer> AllCustomers
         {
             get
             {
                 return customers;
             }
         }
+
+
+
         private string ReadDataFromTable(string selectString, string table)
         {
             SqlDataReader reader;
             SqlCommand command;
-            cnMain = new SqlConnection(strConn);
             try
             {
                 command = new SqlCommand(selectString, cnMain);
@@ -68,67 +65,69 @@ namespace CustomerProjectInf.DatabaseLayer
 
             }
         }
+
         private void FillCustomerById(SqlDataReader reader, string dataTable,
-                                                                      Collection<CustomerNameSpace.Customer> Customers)
+                                                                     Collection<Customer> Customers)
         {
-            CustomerNameSpace.Customer customer;
-            
-            //Role.RoleType employeeRole = Role.RoleType.NoRole;
+            Customer customer = new Customer();
+
 
             while (reader.Read())                          //While you still have stuff to read
             {
-                customer = new CustomerNameSpace.Customer();
+
                 //Same for EmpID, Name  & Phone, all strings with indices 1, 2, & 3 respectively
-                customer.customerId = reader.GetString(0).Trim();
-                customer.customerName = reader.GetString(1).Trim();
-                //customer.customerPhone = reader.GetString(2).Trim();
-                customer.customerAdress = reader.GetString(3).Trim();
+                customer.CustomerID = reader.GetString(0).Trim();
+                customer.Name = reader.GetString(1).Trim();
+                customer.Phone = reader.GetString(2).Trim();
+                customer.Address = reader.GetString(3).Trim();
                 //call the GetRoleInfo method to obtain role specific data from the database
                 //customer.Role = GetRoleInfo(reader, customer);
                 Customers.Add(customer);             //add to the collection
             }
         }
-        public void DatabaseAdd(CustomerNameSpace.Customer TempCus)
+        #region Database Operations --- Add, Edit & Delete
+        public void DatabaseAdd(Customer customer)
         {
             string strSQL = "";
 
             //Build SQL string for the command
 
-            
-           
-                
-            strSQL = "INSERT into HeadWaitron(customerId, customerName, customerAdress)" +
-                         "VALUES ('" + GetValueString(TempCus) + ")";
-            
-                
+            strSQL = "INSERT into CustomerTable(ID, Name, Phone, Adress)" +
+                        "VALUES ('" + GetValueString(customer) + ")";
+
             //Create & execute the insert command 
             UpdateDataSource(new SqlCommand(strSQL, cnMain));
         }
 
-        private void UpdateDataSource(SqlCommand sqlCommand)
+
+        public void DatabaseEdit(Customer tempCus)
         {
-            throw new NotImplementedException();
+            string sqlString = "";
+            Customer customer;
+            //Build SQL string for the Update command
+
+            sqlString = "Update Customr Set Name = '" + tempCus.Name.Trim() + "'," +
+                              "Phone = '" + tempCus.Phone.Trim() + "'," +
+                              "Address =" + tempCus.Address.Trim() + " " +
+                              "WHERE (ID = '" + tempCus.CustomerID.Trim() + "')";
+
+            //Create & execute the update command 
+            UpdateDataSource(new SqlCommand(sqlString, cnMain));
         }
-        private string GetValueString(CustomerNameSpace.Customer TempCus)
+
+
+        private string GetValueString(Customer TempCus)
         {
             string aStr;
-            //decimal pay = 0;
-            string additional ="";
 
-            aStr = TempCus.customerId + "' , '" + TempCus.customerName + "' ," +
-                  "'" + "Adress" + "' ," +
-                    additional;
+            aStr = TempCus.CustomerID + "' , '" + TempCus.CustomerName + "' ," +
+                  "'" + TempCus.CustomerAddress + "' ," + " '" + TempCus.CustomerPhone;
 
             return aStr;
         }
 
-
-
-
-
-        internal void Add(CustomerNameSpace.Customer customer)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
     }
 }
+
+
