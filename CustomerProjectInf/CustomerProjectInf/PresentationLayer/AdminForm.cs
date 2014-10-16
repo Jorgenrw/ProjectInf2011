@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CustomerProjectInf.CustomerNameSpace;
 
 //import customer class
 namespace CustomerProjectInf
@@ -21,9 +22,8 @@ namespace CustomerProjectInf
         private RectangleF tabStringCO;
         private RectangleF tabStringVCO;
         private RectangleF tabStringI;
-
-        private Customer.Customer customer;
-        private Customer.CustomerController customerController;
+        private Customer customer;
+        private CustomerController customerController;
         private string curUsername = string.Empty;
         //private ArrayList Customer = new ArrayList();
         private Timer timerLabel;
@@ -177,11 +177,11 @@ namespace CustomerProjectInf
         }
         #endregion
         #region Customer Create section
-        private Customer.Customer PopulateObject()
+        private Customer PopulateObject()
         {
             
 
-            customer = new Customer.Customer();
+            customer = new Customer();
             customer.customerId = idCCTextbox.Text;
             customer.customerName = nameCCTextbox.Text;
             customer.customerAdress = adressCCTextbox.Text;
@@ -197,8 +197,8 @@ namespace CustomerProjectInf
                 //add customer with all the text in every textbox to the database.
                 
                         customer = PopulateObject();
-                        customer = new Customer.Customer();
-                        customerController = new Customer.CustomerController();
+                        customer = new CustomerNameSpace.Customer();
+                        customerController = new CustomerNameSpace.CustomerController();
                         customerController.ADD(customer);
                         
                 

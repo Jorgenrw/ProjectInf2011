@@ -9,7 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
 using CustomerProjectInf.Properties;
-using CustomerProjectInf.Customer;
+using CustomerProjectInf.CustomerNameSpace;
 
 namespace CustomerProjectInf.DatabaseLayer
 {
@@ -19,7 +19,7 @@ namespace CustomerProjectInf.DatabaseLayer
         private string sql_SELECT1 = "SELECT * FROM " + table1;
         private string strConn = Settings.Default.PoppelDatabaseConnectionString;
 
-        private Collection<Customer.Customer> customers = new Collection<Customer.Customer>();
+        private Collection<CustomerNameSpace.Customer> customers = new Collection<CustomerNameSpace.Customer>();
         private SqlConnection cnMain;//this is so fucking wrong!
 
         public CustomerDatabase(): base()
@@ -34,7 +34,7 @@ namespace CustomerProjectInf.DatabaseLayer
             }
   
         }
-        public Collection<Customer.Customer> AllCustomers
+        public Collection<CustomerNameSpace.Customer> AllCustomers
         {
             get
             {
@@ -69,15 +69,15 @@ namespace CustomerProjectInf.DatabaseLayer
             }
         }
         private void FillCustomerById(SqlDataReader reader, string dataTable,
-                                                                      Collection<Customer.Customer> Customers)
+                                                                      Collection<CustomerNameSpace.Customer> Customers)
         {
-            Customer.Customer customer;
+            CustomerNameSpace.Customer customer;
             
             //Role.RoleType employeeRole = Role.RoleType.NoRole;
 
             while (reader.Read())                          //While you still have stuff to read
             {
-                customer = new Customer.Customer();
+                customer = new CustomerNameSpace.Customer();
                 //Same for EmpID, Name  & Phone, all strings with indices 1, 2, & 3 respectively
                 customer.customerId = reader.GetString(0).Trim();
                 customer.customerName = reader.GetString(1).Trim();
@@ -88,7 +88,7 @@ namespace CustomerProjectInf.DatabaseLayer
                 Customers.Add(customer);             //add to the collection
             }
         }
-        public void DatabaseAdd(Customer.Customer TempCus)
+        public void DatabaseAdd(CustomerNameSpace.Customer TempCus)
         {
             string strSQL = "";
 
@@ -109,7 +109,7 @@ namespace CustomerProjectInf.DatabaseLayer
         {
             throw new NotImplementedException();
         }
-        private string GetValueString(Customer.Customer TempCus)
+        private string GetValueString(CustomerNameSpace.Customer TempCus)
         {
             string aStr;
             //decimal pay = 0;
@@ -126,7 +126,7 @@ namespace CustomerProjectInf.DatabaseLayer
 
 
 
-        internal void Add(Customer.Customer customer)
+        internal void Add(CustomerNameSpace.Customer customer)
         {
             throw new NotImplementedException();
         }

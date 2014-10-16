@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CustomerProjectInf.DatabaseLayer;
-namespace CustomerProjectInf.Customer
+
+namespace CustomerProjectInf.CustomerNameSpace
 {
     class CustomerController
     {
