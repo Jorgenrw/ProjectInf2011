@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CustomerProjectInf.CustomerNameSpace;
-
+//This is Jørgens Branch
 //import customer class
 namespace CustomerProjectInf
 {
