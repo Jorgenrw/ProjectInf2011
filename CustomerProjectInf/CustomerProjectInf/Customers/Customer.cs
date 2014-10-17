@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomerProjectInf.CustomerNameSpace
+namespace CustomerProjectInf.Customers
 {
     public class Customer
     {
@@ -76,6 +76,8 @@ namespace CustomerProjectInf.CustomerNameSpace
                 address = value;
             }
         }
+
+ 
         public bool CustomerBlacklisted
         {
             get

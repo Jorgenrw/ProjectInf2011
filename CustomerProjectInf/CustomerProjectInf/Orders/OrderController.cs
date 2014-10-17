@@ -6,40 +6,41 @@ using System.Text;
 using System.Threading.Tasks;
 using CustomerProjectInf.DatabaseLayer;
 
-namespace CustomerProjectInf.Customers
+namespace CustomerProjectInf.Orders
 {
-    public class CustomerController
+    public class OrderController
     {
-        private  CustomerDB customerDB;
-        private Collection<Customer> Customers;
+        
+        private  OrderDB orderDB;
+        private Collection<Order> Orders;
 
-         public CustomerController()
+         public OrderController()
         {
-            customerDB = new CustomerDB();
-            Customers = customerDB.AllCustomers;
+            orderDB = new OrderDB();
+            Orders = orderDB.AllOrders;
         }
-        public Collection<Customer> AllCustomers
+        public Collection<Order> AllOrders
         {
             get
             {
-                return Customers;
+                return Orders;
             }
         }
-        public void ADD(Customer customer)
+        public void ADD(Order order)
         {
             //Write code to add employee. Remember to use the DatabaseADD method from the EmployeeDB class
-            customerDB.DatabaseAdd(customer);
+            orderDB.DatabaseAdd(order);
             //Also add the employee to the employees collection?
             
-            Customers.Add(customer);
+            Orders.Add(order);
         }
-        public Customer FindByID(string idValue)
+        public Order FindByID(string idValue)
         {
             int position = 0;
-            bool found = (idValue == Customers[position].CustomerID);
-            while (!found && position < Customers.Count)
+            bool found = (idValue == Orders[position].OrderID);
+            while (!found && position < Orders.Count)
             {
-                found = (idValue == Customers[position].CustomerID);
+                found = (idValue == Orders[position].OrderID);
                 if (!found)
                 {
                     position += 1;
@@ -47,12 +48,15 @@ namespace CustomerProjectInf.Customers
             }
             if (found)
             {
-                return Customers[position];
+                return Orders[position];
             }
             else
             {
                 return null;
             }
         }
+    }
+}
+
     }
 }

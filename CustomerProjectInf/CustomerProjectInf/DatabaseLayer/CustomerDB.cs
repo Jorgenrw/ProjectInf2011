@@ -77,9 +77,9 @@ namespace CustomerProjectInf.DatabaseLayer
 
                 //Same for EmpID, Name  & Phone, all strings with indices 1, 2, & 3 respectively
                 customer.CustomerID = reader.GetString(0).Trim();
-                customer.Name = reader.GetString(1).Trim();
-                customer.Phone = reader.GetString(2).Trim();
-                customer.Address = reader.GetString(3).Trim();
+                customer.CustomerName = reader.GetString(1).Trim();
+                customer.CustomerPhone = reader.GetString(2).Trim();
+                customer.CustomerAddress = reader.GetString(3).Trim();
                 //call the GetRoleInfo method to obtain role specific data from the database
                 //customer.Role = GetRoleInfo(reader, customer);
                 Customers.Add(customer);             //add to the collection
