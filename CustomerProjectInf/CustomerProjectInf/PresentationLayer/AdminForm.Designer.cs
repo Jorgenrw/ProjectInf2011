@@ -235,7 +235,6 @@
             this.entriesCorrectCCLabel.Name = "entriesCorrectCCLabel";
             this.entriesCorrectCCLabel.Size = new System.Drawing.Size(111, 54);
             this.entriesCorrectCCLabel.TabIndex = 10;
-            this.entriesCorrectCCLabel.Text = "Are all the entries correct for : \"customer\" correct?";
             this.entriesCorrectCCLabel.Visible = false;
             // 
             // submitCCButton
@@ -509,7 +508,7 @@
             this.searchECListbox.Size = new System.Drawing.Size(171, 69);
             this.searchECListbox.TabIndex = 15;
             this.searchECListbox.Visible = false;
-            this.searchECListbox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.searchECListbox.SelectedIndexChanged += new System.EventHandler(this.searchECListbox_SelectedIndexChanged);
             // 
             // entriesCorrectECLabel
             // 
@@ -791,7 +790,6 @@
             this.submitCOButton.TabIndex = 9;
             this.submitCOButton.Text = "Submit order";
             this.submitCOButton.UseVisualStyleBackColor = true;
-            this.submitCOButton.Visible = false;
             this.submitCOButton.Click += new System.EventHandler(this.submitCOButton_Click);
             // 
             // blacklistedCODynamicLabel
@@ -1155,14 +1153,14 @@
             this.expiredColumn.Name = "expiredColumn";
             this.expiredColumn.Width = 67;
             // 
-            // adminForm
+            // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(658, 316);
             this.Controls.Add(this.adminPageTabControl);
             this.IsMdiContainer = true;
-            this.Name = "adminForm";
+            this.Name = "AdminForm";
             this.Text = "AdminPage";
             this.Load += new System.EventHandler(this.adminForm_Load);
             this.adminPageTabControl.ResumeLayout(false);

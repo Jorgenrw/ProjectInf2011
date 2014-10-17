@@ -24,14 +24,17 @@ namespace CustomerProjectInf
         private RectangleF tabStringI;
         private Customer customer;
         private CustomerController customerController;
+      
         private string curUsername = string.Empty;
         //private ArrayList Customer = new ArrayList();
         private Timer timerLabel;
-        //public adminForm(string username)
-        public AdminForm()
+        public AdminForm(CustomerController aController, string username)
+        //public AdminForm(CustomerController aController)
+            
         {
             InitializeComponent();
-            //this.curUsername = username;
+            this.curUsername = username;
+            customerController = aController;
             adminFormActivatedLabel.Text = curUsername;
             //changeTextForm();
             tabStringAdmin = (RectangleF)adminPageTabControl.GetTabRect(0);
@@ -94,7 +97,7 @@ namespace CustomerProjectInf
                     break;
             }
             Rectangle bounds = e.Bounds;
-            bounds.Inflate(-15, 0);
+            bounds.Inflate(-15, -1);
             e.Graphics.DrawString(adminPageTabControl.TabPages[e.Index].Text, font, brushTabText, bounds);
             
         }
@@ -176,60 +179,113 @@ namespace CustomerProjectInf
 
         }
         #endregion
-        #region Customer Create section
-        private Customer PopulateObject()
+        #region helper methods
+        public void displayInList(Customer aCustomer)
         {
-            
+            customer = aCustomer;
+            PopulateObject(customer);
 
-            customer = new Customer();
-            customer.customerId = idCCTextbox.Text;
-            customer.customerName = nameCCTextbox.Text;
-            customer.customerAdress = adressCCTextbox.Text;
-            
-            return customer;
         }
+        private void clearTextBoxes(TextBox tb1, TextBox tb2, TextBox tb3, TextBox tb4)
+        {
+            tb1.Clear();
+            tb2.Clear();
+            tb3.Clear();
+            tb4.Clear();
+        }
+        private void clearLabels(Label l1, Label l2, Label l3, Label l4, Label l5)
+        {
+            l1.Text = "";
+            l2.Text = "";
+            l3.Text = "";
+            l4.Text = "";
+            l5.Text = "";
+        }
+        private void setEntriesLabel(string text, Label label)
+        {
+            entriesCorrectCCLabel.Text = text;
+            label.Visible = true;
+        }
+        private void enableTextBoxes(TextBox tb1, TextBox tb2, TextBox tb3, TextBox tb4)
+        {
+            tb1.Enabled = true;
+            tb2.Enabled = true;
+            tb3.Enabled = true;
+            tb4.Enabled = true;
+        }
+        private void disableTextBoxes(TextBox tb1, TextBox tb2, TextBox tb3, TextBox tb4)
+        {
+            tb1.Enabled = false;
+            tb2.Enabled = false;
+            tb3.Enabled = false;
+            tb4.Enabled = false;
+        }
+        #endregion
+        #region Customer Create section
+        private Customer PopulateObject(Customer aCustomer)
+        {
+
+
+             //idCCTextbox.Text=aCustomer.customerId;
+             //nameCCTextbox.Text=aCustomer.customerName;
+             //adressCCTextbox.Text=aCustomer.customerAdress;
+           
+            return aCustomer;
+        }
+        
+        private Boolean checkEmptyCCTextbox()
+        {
+            if (idCCTextbox.TextLength > 0 && nameCCTextbox.TextLength > 0 && phoneCCTextbox.TextLength > 0 && adressCCTextbox.TextLength >0)
+            {
+                return false;
+            }
+            if (idCCTextbox.TextLength == 0 && nameCCTextbox.TextLength == 0 && phoneCCTextbox.TextLength == 0 && adressCCTextbox.TextLength == 0){
+                return true;
+            }
+            return true;
+        }
+        
         private void submitCCButton_Click(object sender, EventArgs e)
         {
-            //if the entries label are visable, then we can submit the customer to the database.
-            if (entriesCorrectCCLabel.Visible.Equals(true))
+            if (cancelCCButton.Text.Equals("Edit"))
             {
                 //Create customer method with connection to the database
                 //add customer with all the text in every textbox to the database.
                 
-                        customer = PopulateObject();
-                        customer = new CustomerNameSpace.Customer();
-                        customerController = new CustomerNameSpace.CustomerController();
+                        customer = PopulateObject(customer);
+                        customer = new Customer();
+                        customerController = new CustomerController();
                         customerController.ADD(customer);
                         
                 
                 setAdminTabLabelString("Customer " + "'customerid' " + "Created");
                 
                 adminPageTabControl.SelectedTab = adminPageTab;
-
-                idCCTextbox.Clear();
-                nameCCTextbox.Clear();
-                phoneCCTextbox.Clear();
-                adressCCTextbox.Clear();
+                
+                clearTextBoxes(idCCTextbox, nameCCTextbox, phoneCCTextbox, adressCCTextbox);
+                enableTextBoxes(idCCTextbox, nameCCTextbox, phoneCCTextbox, adressCCTextbox);
+                
                 entriesCorrectCCLabel.Visible = false;
-                idCCTextbox.Enabled = true;
-                nameCCTextbox.Enabled = true;
-                phoneCCTextbox.Enabled = true;
-                adressCCTextbox.Enabled = true;
+                
                 cancelCCButton.Text = "Cancel";
                 submitCCButton.Text = "Submit";
               
                 
             }
             //when push submit, the text from the cancel button thus the functionality changes.
-            else
+            else if(checkEmptyCCTextbox() == false)
             {
-                entriesCorrectCCLabel.Visible = true;
+                //if(idCCTextbox.TextLength > 0 && nameCCTextbox >)
+                setEntriesLabel("Are all the entries correct?", entriesCorrectCCLabel);
+                
                 cancelCCButton.Text = "Edit";
                 submitCCButton.Text = "Confirm";
-                idCCTextbox.Enabled = false;
-                nameCCTextbox.Enabled = false;
-                phoneCCTextbox.Enabled = false;
-                adressCCTextbox.Enabled = false;
+                disableTextBoxes(idCCTextbox, nameCCTextbox, phoneCCTextbox, adressCCTextbox);
+            }
+            else
+            {
+                setEntriesLabel("You need to enter ID, NAME,PHONE and ADRESS before submitting a customer", entriesCorrectCCLabel);
+                idCCTextbox.Focus();
             }
           
 
@@ -238,24 +294,41 @@ namespace CustomerProjectInf
         private void cancelCCButton_Click(object sender, EventArgs e)
         {
             //If the buttons text changes the buttons functionality changes as well.
-            if (cancelCCButton.Text.Equals("Edit"))
+            if (cancelCCButton.Text.Equals("Edit") && checkEmptyCCTextbox() == false)
             {
                 entriesCorrectCCLabel.Visible = false;
 
-                idCCTextbox.Enabled = true;
-                nameCCTextbox.Enabled = true;
-                phoneCCTextbox.Enabled = true;
-                adressCCTextbox.Enabled = true;
-
+                enableTextBoxes(idCCTextbox, nameCCTextbox, phoneCCTextbox, adressCCTextbox);
                 idCCTextbox.Focus();
 
                 cancelCCButton.Text = "Cancel";
+                
             }
-            else 
+              
+            else if (checkEmptyCCTextbox() == false)
             {
+                DialogResult confirmCancel = MessageBox.Show("Are you sure you want to cancel the creating of A customer", "Cancelation", MessageBoxButtons.YesNo);
+                if (confirmCancel == DialogResult.Yes)
+                {
+                    clearTextBoxes(idCCTextbox, nameCCTextbox, phoneCCTextbox, adressCCTextbox);
+                    adminPageTabControl.SelectedTab = adminPageTab;
+                    setAdminTabLabelString("You have not created a Customer");
+                }
+                else if (confirmCancel == DialogResult.No)
+                {
+                    idCCTextbox.Focus();
+                }
+
+                
+            }
+            if(checkEmptyCCTextbox() == true)
+            {
+                entriesCorrectCCLabel.Visible = false;
+                clearTextBoxes(idCCTextbox, nameCCTextbox, phoneCCTextbox, adressCCTextbox);
                 adminPageTabControl.SelectedTab = adminPageTab;
                 setAdminTabLabelString("You have not created a Customer");
             }
+            
             if (submitCCButton.Text.Equals("Confirm"))
             {
                 submitCCButton.Text = "Submit";
@@ -273,65 +346,101 @@ namespace CustomerProjectInf
                 searchVCListbox.Visible = true;
             }
         }
+        private void populateList()
+        {
+
+        }
         private void searchVCListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //get customer from database if("customer.selected"){blablabla}
-              idShowVCLabel.Text = customer.customerId;
-              nameShowVCLabel.Text = customer.customerName;
-              phoneShowVCLabel.Text = customer.customerPhone.ToString();
+              //uncomment when pull idShowVCLabel.Text = customer.CustomerID;
+             //uncomment when pull nameShowVCLabel.Text = customer.CustomerName;
+            //uncomment when pullphoneShowVCLabel.Text = customer.CustomerPhone.ToString();
               adressShowVCLabel.Text = customer.customerAdress;
-              blacklistShowVCLabel.Text = customer.customerBlacklister.ToString();
+              //uncomment when pullblacklistShowVCLabel.Text = customer.CustomerBlacklisted.ToString();
               //disable the searchtextbox after customer clicked
               searchVCListbox.Enabled = false;
               
         }
         private void okVCButton_Click(object sender, EventArgs e)
         {
+            clearLabels(idShowVCLabel, nameShowVCLabel, phoneShowVCLabel, adressShowVCLabel, blacklistShowVCLabel);
+            
             adminPageTabControl.SelectedTab = adminPageTab;
             setAdminTabLabelString("You have just viewed a customer");
         }
         #endregion
 
         #region Edit customer section
+        private Boolean checkEmptyECTextbox()
+        {
+            if (idECTextbox.TextLength > 0 && nameECTextbox.TextLength > 0 && phoneECTextbox.TextLength > 0 && adressECTextbox.TextLength > 0)
+            {
+                return false;
+            }
+            if (idECTextbox.TextLength == 0 && nameECTextbox.TextLength == 0 && phoneECTextbox.TextLength == 0 && adressECTextbox.TextLength == 0)
+            {
+                return true;
+            }
+            return true;
+        }
         private void searchKeypressedEC(object sender, KeyPressEventArgs key)
         {
             if (key.KeyChar == (char)13)
             {
                 //MessageBox.Show("Enter pressed!");
+                displayInList(customer);
+                /*if (searchECListbox.SelectedValue == customer.customerName)// or somethings
+                {
+                    idECTextbox.Text = customer.customerId;
+                    nameECTextbox.Text = customer.customerName;
+                    phoneECTextbox.Text = customer.customerPhone.ToString();
+                    adressECTextbox.Text = customer.customerAdress;
+                }*/
                 searchECListbox.Visible = true;
             }
         }
         private void submitECButton_Click(object sender, EventArgs e)
         {
-            if (entriesCorrectECLabel.Visible.Equals(true))
+            if (cancelECButton.Text.Equals("Edit"))
             {
                 //Navigate you to adminpagetab with relevent output to whatever you did
                 setAdminTabLabelString("Customer " + "'customerid' " + "Edited");
                 adminPageTabControl.SelectedTab = adminPageTab;
+               
                 //Resetting Tab to default whenever you leave this.tab
-                idECTextbox.Clear();
-                nameECTextbox.Clear();
-                phoneECTextbox.Clear();
-                adressECTextbox.Clear();
+                clearTextBoxes(idECTextbox, nameECTextbox, phoneECTextbox, adressECTextbox);
+                disableTextBoxes(idECTextbox, nameECTextbox, phoneECTextbox, adressECTextbox);
 
-                searchPCOLabel.Visible = false;
+                entriesCorrectECLabel.Visible = false;
+                searchECTextbox.Enabled = true;
+                //This is strange? was i drunk
+                /*searchPCOLabel.Visible = false;
                 searchPCOTextbox.Visible = false;
                 searchPCOListbox.Visible = false;
                 entriesCorrectECLabel.Visible = false;
-
+                */
                 cancelECButton.Text = "Cancel";
                 submitECButton.Text = "Submit edits";
             }
-            else
+            //when push submit, the text from the cancel button thus the functionality changes.
+            else if (checkEmptyCCTextbox() == false)
             {
-                entriesCorrectECLabel.Visible = true;
+                setEntriesLabel("Are all the entries correct?", entriesCorrectECLabel);
                 cancelECButton.Text = "Edit";
                 submitECButton.Text = "Confirm";
-                searchECTextbox.Enabled = false;
-                idECTextbox.Enabled = false;
-                nameECTextbox.Enabled = false;
-                phoneECTextbox.Enabled = false;
-                adressECTextbox.Enabled = false;
+             
+                disableTextBoxes(idECTextbox, nameECTextbox, phoneECTextbox, adressECTextbox);
+            }
+            else if (idECTextbox.Enabled == true)
+            {
+
+                setEntriesLabel("You need to enter ID, NAME,PHONE and ADRESS before submitting a customer", entriesCorrectECLabel);
+                idECTextbox.Focus();
+
+                
+
+                
             }
         }
 
@@ -342,10 +451,7 @@ namespace CustomerProjectInf
                 entriesCorrectECLabel.Visible = false;
 
                 //searchECTextbox.Enabled = true;
-                idECTextbox.Enabled = true;
-                nameECTextbox.Enabled = true;
-                phoneECTextbox.Enabled = true;
-                adressECTextbox.Enabled = true;
+                enableTextBoxes(idECTextbox, nameECTextbox, phoneECTextbox, adressECTextbox);
 
                 idECTextbox.Focus();
 
@@ -354,6 +460,7 @@ namespace CustomerProjectInf
             else
             {
                 //Navigate you to adminpagetab with relevent output to whatever you did
+                searchECListbox.Visible = false;
                 adminPageTabControl.SelectedTab = adminPageTab;
                 setAdminTabLabelString("You have not Edited a Customer");
             }
@@ -363,17 +470,19 @@ namespace CustomerProjectInf
                 //SyntaxCheck.CheckPath(); sadsa
             }
         }
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void searchECListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if this customer is selected bla bla bla
-            idECTextbox.Text = customer.customerId;
-            nameECTextbox.Text = customer.customerName;
-            phoneECTextbox.Text = customer.customerPhone.ToString();
+            //uncomment when pullidECTextbox.Text = customer.CustomerID;
+            //uncomment when pullnameECTextbox.Text = customer.CustomerName;
+            //uncomment when pullphoneECTextbox.Text = customer.CustomerPhone.ToString();
             adressECTextbox.Text = customer.customerAdress;
+
             /*in the time given @ this project, we disable this to make the functionality easy.
             *but if it was a real project other functionality would be added, ask for explanation.
             */
-            searchECTextbox.Enabled = false; 
+            searchECTextbox.Enabled = false;
+            enableTextBoxes(idECTextbox, nameECTextbox, phoneECTextbox, adressECTextbox);
         }
         #endregion
 

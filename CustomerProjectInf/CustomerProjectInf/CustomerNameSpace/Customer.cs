@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomerProjectInf.CustomerNameSpace
+namespace CustomerProjectInf.Customers
 {
     public class Customer
     {
@@ -18,71 +18,75 @@ namespace CustomerProjectInf.CustomerNameSpace
             Id = "";
             name = "";
             Adress = "";
+            phone = "";
+            blacklisted = false;
         }
         //int phone,, bool blacklisted
-        public Customer(string id, string name, string adress)
+        public Customer(string idVal, string nameVal, string addressVal, string phoneVal, bool blacklistedVal)
         {
-            this.Id = id;
-            this.name = name;
-            //this.phone = phone;
-            this.Adress = adress;
-            //blacklisted = false;
+            id = idVal;
+            name = nameVal;
+            phone = phoneVal;
+            address = addressVal;
+            blacklisted = blacklistedVal;
         }
-        public string customerId
-        {
-            get
-            {
-                return Id;
-            }
-            set
-            {
-                Id = value;
-            }
-        }
-        public string customerName
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
-        public int customerPhone
-        {
-            get
-            {
-                return phone;
-            }
-            set
-            {
-                phone = value;
-            }
-        }
-        public string customerAdress
-        {
-            get
-            {
-                return Adress;
-            }
-            set
-            {
-                Adress = value;
-            }
-        }
-        public bool customerBlacklister
-        {
-            get
-            {
-                return blacklisted;
-            }
-            set
-            {
-                blacklisted = value;
-            }
-        }
-
-    }
-}
+        public string CustomerID
+         {
+             get
+             {
+                 return id;
+             }
+             set
+             {
+                 id = value;
+             }
+         }
+         public string CustomerName
+         {
+             get
+             {
+                 return name;
+             }
+             set
+             {
+                 name = value;
+             }
+         }
+         public string CustomerPhone
+         {
+             get
+             {
+                 return phone;
+             }
+             set
+             {
+                 phone = value;
+             }
+         }
+         public string CustomerAddress
+         {
+             get
+             {
+                 return address;
+             }
+             set
+             {
+                 address = value;
+             }
+         }
++
++ 
+         public bool CustomerBlacklisted
+         {
+             get
+             {
+                 return blacklisted;
+             }
+             set
+             {
+                 blacklisted = value;
+             }
+         }
+ 
+     }
+ }
