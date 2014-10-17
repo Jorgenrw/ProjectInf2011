@@ -29,7 +29,7 @@ namespace CustomerProjectInf
         private Timer timerLabel;
         private Customer customer;
         private CustomerController customerController;
-        public AdminForm(string username)
+        public AdminForm(string username, CustomerController aController) : base()
         //public AdminForm(CustomerController aController)
             
         {
@@ -229,9 +229,8 @@ namespace CustomerProjectInf
             customer.CustomerID = idCCTextbox.Text;
             customer.CustomerName = nameCCTextbox.Text;
             customer.CustomerAddress = adressCCTextbox.Text;
-             //idCCTextbox.Text=aCustomer.customerId;
-             //nameCCTextbox.Text=aCustomer.customerName;
-             //adressCCTextbox.Text=aCustomer.customerAdress;
+            customer.CustomerPhone = phoneCCTextbox.Text;
+            customer.CustomerBlacklisted = false;
            
             return customer;
         }
@@ -254,11 +253,9 @@ namespace CustomerProjectInf
             {
                 //Create customer method with connection to the database
                 //add customer with all the text in every textbox to the database.
-                
-                        customer = PopulateObject();
-                        customer = new Customers.Customer();
-                        customerController = new Customers.CustomerController();
-                        customerController.ADD(customer);
+
+                customer = PopulateObject();
+                customerController.ADD(customer);// null reference exception here...
                         
                 
                 setAdminTabLabelString("Customer " + "'customerid' " + "Created");
@@ -555,6 +552,11 @@ namespace CustomerProjectInf
                 submitCOButton.Text = "Submit order";
                 entriesCorrectCOLabel.Visible = false;
                 productCODataGridView.Enabled = true; 
+            }
+            else
+            {
+                setAdminTabLabelString("You have not created an order");
+                adminPageTabControl.SelectedTab = adminPageTab;
             }
             //check if customer is selected, pupup message are you sure to cancel.
             //adminPageTabControl.SelectedTab = adminPageTab;

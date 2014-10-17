@@ -98,7 +98,7 @@ namespace CustomerProjectInf.DatabaseLayer
 
             strSQL =
             "INSERT into ProductTable(ProductID, ProductDescription, SupplierID, CategoryID, QuantityPerUnit, UnitsInStock, UnitPrice, ExpiryDate, LastUpdate, EmployeeID, ShelfNumber)" +
-                        "VALUES ('" + GetValueString(product) + ")";
+                        "VALUES (" + GetValueString(product) + ")";
 
             //Create & execute the insert command 
             UpdateDataSource(new SqlCommand(strSQL, cnMain));
@@ -111,18 +111,18 @@ namespace CustomerProjectInf.DatabaseLayer
             //Build SQL string for the Update command
 
             sqlString =
-            "Update ProductTable Set ProductDescription = '" + tempProd.ProductDescription.Trim() + "'," +
-                                    "SupplierID = '" + tempProd.SupplierID.Trim() + "'," +
-                                    "CategoryID = '" + tempProd.CategoryID.Trim() + "'," +
-                                    "QuantityPerUnit = '" + tempProd.QuantityPerUnit.ToString() + "'," +
-                                    "UnitsInStock = '" + tempProd.UnitsInStock.ToString() + "'," +
-                                    "UnitPrice = '" + tempProd.UnitPrice.ToString() + "'," +
-                                    "ExpiryDate = '" + tempProd.ExpiryDate.ToString() + "'," +
-                                    "LastUpdate" + tempProd.LastUpdate.ToString() + "'," +
-                                    "EmployeeID" + tempProd.EmployeeID.Trim() + "'," +
-                                    "ShelfNumber" + tempProd.ShelfNumber.Trim() + "'," +
-                                    " " +
-                              "WHERE (ProductID = '" + tempProd.ProductID.Trim() + "')";
+            "UPDATE ProductTable" +
+                "SET ProductDescription = '" + tempProd.ProductDescription.Trim() + "'," +
+                "SupplierID = '" + tempProd.SupplierID.Trim() + "'," +
+                "CategoryID = '" + tempProd.CategoryID.Trim() + "'," +
+                "QuantityPerUnit = '" + tempProd.QuantityPerUnit.ToString() + "'," +
+                "UnitsInStock = '" + tempProd.UnitsInStock.ToString() + "'," +
+                "UnitPrice = '" + tempProd.UnitPrice.ToString() + "'," +
+                "ExpiryDate = '" + tempProd.ExpiryDate.ToString() + "'," +
+                "LastUpdate" + tempProd.LastUpdate.ToString() + "'," +
+                "EmployeeID" + tempProd.EmployeeID.Trim() + "'," +
+                "ShelfNumber" + tempProd.ShelfNumber.Trim() + "' " +
+                "WHERE ProductID = '" + tempProd.ProductID.Trim() + "'";
 
             //Create & execute the update command 
             UpdateDataSource(new SqlCommand(sqlString, cnMain));
