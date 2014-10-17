@@ -92,8 +92,8 @@ namespace CustomerProjectInf.DatabaseLayer
 
             //Build SQL string for the command
 
-            strSQL = "INSERT into CustomerTable(CustomerID, CustomerName, CustomerAddress, CustomerTelephone)" +
-                        "VALUES ('" + GetValueString(customer) + ")";
+            strSQL = "INSERT into CustomerTable (CustomerID, CustomerName, CustomerAddress, CustomerTelephone)" +
+                        "VALUES (" + GetValueString(customer) + ")";
 
             //Create & execute the insert command 
             UpdateDataSource(new SqlCommand(strSQL, cnMain));
@@ -106,10 +106,11 @@ namespace CustomerProjectInf.DatabaseLayer
             
             //Build SQL string for the Update command
 
-            sqlString = "Update Customr Set Name = '" + tempCus.CustomerName.Trim() + "'," +
-                              "Phone = '" + tempCus.CustomerPhone.Trim() + "'," +
-                              "Address =" + tempCus.CustomerAddress.Trim() + " " +
-                              "WHERE (ID = '" + tempCus.CustomerID.Trim() + "')";
+            sqlString = "UPDATE CustomerTable"+
+                        "SET CustomerName = '" + tempCus.CustomerName.Trim() + "'," +
+                            "CustomerTelephone = '" + tempCus.CustomerPhone.Trim() + "'," +
+                            "CustomerAddress = '" + tempCus.CustomerAddress.Trim() + "' " +
+                        "WHERE CustomerID = '" + tempCus.CustomerID.Trim() + "'";
 
             //Create & execute the update command 
             UpdateDataSource(new SqlCommand(sqlString, cnMain));
@@ -120,8 +121,8 @@ namespace CustomerProjectInf.DatabaseLayer
         {
             string aStr;
 
-            aStr = TempCus.CustomerID + "' , '" + TempCus.CustomerName + "' ,'" +
-                   TempCus.CustomerAddress + "' ,'"  + TempCus.CustomerPhone;
+            aStr = "'"+TempCus.CustomerID + "' , '" + TempCus.CustomerName + "' ,'" +
+                   TempCus.CustomerAddress + "' ,'"  + TempCus.CustomerPhone+"'";
 
             return aStr;
         }

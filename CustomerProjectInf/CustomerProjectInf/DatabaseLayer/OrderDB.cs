@@ -97,7 +97,7 @@ namespace CustomerProjectInf.DatabaseLayer
 
             strSQL =
             "INSERT into ProductTable(ProductID, ProductDescription, SupplierID, CategoryID, QuantityPerUnit, UnitsInStock, UnitPrice, ExpiryDate, LastUpdate, EmployeeID, ShelfNumber)" +
-                        "VALUES ('" + GetValueString(order) + ")";
+                        "VALUES (" + GetValueString(order) + ")";
 
             //Create & execute the insert command 
             UpdateDataSource(new SqlCommand(strSQL, cnMain));
@@ -111,17 +111,17 @@ namespace CustomerProjectInf.DatabaseLayer
             //Build SQL string for the Update command
 
             sqlString =
-            "Update ProductTable Set CustomerID = '" + tempOrder.CustomerID.Trim() + "'," +
-                                    "EmployeeID = '" + tempOrder.EmployeeID.Trim() + "'," +
-                                    "ProductID = '" + tempOrder.ProductID.ToString() + "'," +
-                                    "UnitPrice = '" + tempOrder.UnitPrice.ToString() + "'," +
-                                    "Quantity = '" + tempOrder.Quantity.ToString() + "'," +
-                                    "OrderDate = '" + tempOrder.OrderDate.ToString() + "'," +
-                                    "RequiredDate = '" + tempOrder.RequiredDate.ToString() + "'," +
-                                    "ShippedDate = '" + tempOrder.ShippedDate.ToString() + "'," +
-                                    "LastUpdate = '" + tempOrder.LastUpdate.ToString() + "'," +
-                                    " " +
-                              "WHERE (OrderID = '" + tempOrder.OrderID.Trim() + "')";
+            "UPDATE ProductTable"+
+            "SET CustomerID = '" + tempOrder.CustomerID.Trim() + "'," +
+                "EmployeeID = '" + tempOrder.EmployeeID.Trim() + "'," +
+                "ProductID = '" + tempOrder.ProductID.ToString() + "'," +
+                "UnitPrice = '" + tempOrder.UnitPrice.ToString() + "'," +
+                "Quantity = '" + tempOrder.Quantity.ToString() + "'," +
+                "OrderDate = '" + tempOrder.OrderDate.ToString() + "'," +
+                "RequiredDate = '" + tempOrder.RequiredDate.ToString() + "'," +
+                "ShippedDate = '" + tempOrder.ShippedDate.ToString() + "'," +
+                "LastUpdate = '" + tempOrder.LastUpdate.ToString() + "' " +
+             "WHERE OrderID = '" + tempOrder.OrderID.Trim() + "'";
 
             //Create & execute the update command 
             UpdateDataSource(new SqlCommand(sqlString, cnMain));

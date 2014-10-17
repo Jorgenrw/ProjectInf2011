@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CustomerProjectInf.PresentationLayer;
 
 namespace CustomerProjectInf
 {
@@ -16,7 +17,7 @@ namespace CustomerProjectInf
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdminForm());
+            Application.Run(new MainForm());
         }
     }
 }

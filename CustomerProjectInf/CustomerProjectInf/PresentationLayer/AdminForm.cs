@@ -28,6 +28,19 @@ namespace CustomerProjectInf
         //private ArrayList Customer = new ArrayList();
         private Timer timerLabel;
         //public adminForm(string username)
+
+
+
+       public AdminForm(CustomerController aController)
+            : base()
+        {
+            //This call is required by the Windows Form Designer.
+            InitializeComponent();
+            //Add any initialization after the InitializeComponent() call
+            customerController = aController;
+
+        }
+
         public AdminForm()
         {
             InitializeComponent();
@@ -179,28 +192,28 @@ namespace CustomerProjectInf
         #region Customer Create section
         private Customer PopulateObject()
         {
-            
 
             customer = new Customer();
-            customer.CustomerID = idCCTextbox.Text;
+            
+            customer.CustomerID= idCCTextbox.Text;
             customer.CustomerName = nameCCTextbox.Text;
             customer.CustomerAddress = adressCCTextbox.Text;
+            customer.CustomerPhone = phoneCCTextbox.Text;
+            customer.CustomerBlacklisted = false;
             
             return customer;
         }
         private void submitCCButton_Click(object sender, EventArgs e)
         {
             //if the entries label are visable, then we can submit the customer to the database.
+
             if (entriesCorrectCCLabel.Visible.Equals(true))
             {
                 //Create customer method with connection to the database
                 //add customer with all the text in every textbox to the database.
-                
-                        customer = PopulateObject();
-                        customer = new Customers.Customer();
-                        customerController = new Customers.CustomerController();
-                        customerController.ADD(customer);
-                        
+
+                customer = PopulateObject();
+                customerController.ADD(customer);
                 
                 setAdminTabLabelString("Customer " + "'customerid' " + "Created");
                 
