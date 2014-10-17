@@ -92,7 +92,7 @@ namespace CustomerProjectInf.DatabaseLayer
 
             //Build SQL string for the command
 
-            strSQL = "INSERT into CustomerTable(ID, Name, Phone, Adress)" +
+            strSQL = "INSERT into CustomerTable(CustomerID, CustomerName, CustomerAddress, CustomerTelephone)" +
                         "VALUES ('" + GetValueString(customer) + ")";
 
             //Create & execute the insert command 
@@ -103,12 +103,12 @@ namespace CustomerProjectInf.DatabaseLayer
         public void DatabaseEdit(Customer tempCus)
         {
             string sqlString = "";
-            Customer customer;
+            
             //Build SQL string for the Update command
 
-            sqlString = "Update Customr Set Name = '" + tempCus.Name.Trim() + "'," +
-                              "Phone = '" + tempCus.Phone.Trim() + "'," +
-                              "Address =" + tempCus.Address.Trim() + " " +
+            sqlString = "Update Customr Set Name = '" + tempCus.CustomerName.Trim() + "'," +
+                              "Phone = '" + tempCus.CustomerPhone.Trim() + "'," +
+                              "Address =" + tempCus.CustomerAddress.Trim() + " " +
                               "WHERE (ID = '" + tempCus.CustomerID.Trim() + "')";
 
             //Create & execute the update command 
@@ -120,8 +120,8 @@ namespace CustomerProjectInf.DatabaseLayer
         {
             string aStr;
 
-            aStr = TempCus.CustomerID + "' , '" + TempCus.CustomerName + "' ," +
-                  "'" + TempCus.CustomerAddress + "' ," + " '" + TempCus.CustomerPhone;
+            aStr = TempCus.CustomerID + "' , '" + TempCus.CustomerName + "' ,'" +
+                   TempCus.CustomerAddress + "' ,'"  + TempCus.CustomerPhone;
 
             return aStr;
         }

@@ -117,7 +117,7 @@ namespace CustomerProjectInf
             }
         }
 
-        public double UnitsInStock
+        public int UnitsInStock
         {
             get
             {

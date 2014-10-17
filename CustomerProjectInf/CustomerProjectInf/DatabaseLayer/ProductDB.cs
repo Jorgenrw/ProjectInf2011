@@ -108,7 +108,7 @@ namespace CustomerProjectInf.DatabaseLayer
         public void DatabaseEdit(Product tempProd)
         {
             string sqlString = "";
-            Product product;
+            
             //Build SQL string for the Update command
 
             sqlString = 

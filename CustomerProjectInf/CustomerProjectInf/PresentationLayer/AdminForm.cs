@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CustomerProjectInf.CustomerNameSpace;
+using CustomerProjectInf.Customers;
 //THis is qamran pushing
 //import customer class
 namespace CustomerProjectInf
@@ -184,7 +184,7 @@ namespace CustomerProjectInf
             customer = new Customer();
             customer.CustomerID = idCCTextbox.Text;
             customer.CustomerName = nameCCTextbox.Text;
-            customer.customerAdress = adressCCTextbox.Text;
+            customer.CustomerAddress = adressCCTextbox.Text;
             
             return customer;
         }
@@ -197,8 +197,8 @@ namespace CustomerProjectInf
                 //add customer with all the text in every textbox to the database.
                 
                         customer = PopulateObject();
-                        customer = new CustomerNameSpace.Customer();
-                        customerController = new CustomerNameSpace.CustomerController();
+                        customer = new Customers.Customer();
+                        customerController = new Customers.CustomerController();
                         customerController.ADD(customer);
                         
                 
@@ -279,7 +279,7 @@ namespace CustomerProjectInf
               idShowVCLabel.Text = customer.CustomerID;
               nameShowVCLabel.Text = customer.CustomerName;
               phoneShowVCLabel.Text = customer.CustomerPhone.ToString();
-              adressShowVCLabel.Text = customer.customerAdress;
+              adressShowVCLabel.Text = customer.CustomerAddress;
               blacklistShowVCLabel.Text = customer.CustomerBlacklisted.ToString();
               //disable the searchtextbox after customer clicked
               searchVCListbox.Enabled = false;
@@ -369,7 +369,7 @@ namespace CustomerProjectInf
             idECTextbox.Text = customer.CustomerID;
             nameECTextbox.Text = customer.CustomerName;
             phoneECTextbox.Text = customer.CustomerPhone.ToString();
-            adressECTextbox.Text = customer.customerAdress;
+            adressECTextbox.Text = customer.CustomerAddress;
             /*in the time given @ this project, we disable this to make the functionality easy.
             *but if it was a real project other functionality would be added, ask for explanation.
             */

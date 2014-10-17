@@ -12,7 +12,7 @@ using CustomerProjectInf.Properties;
 
 namespace CustomerProjectInf.DatabaseLayer
 {
-    class DB
+    public class DB
     {
         private string strConn = Settings.Default.PoppelDatabaseConnectionString;
         protected SqlConnection cnMain;
