@@ -12,14 +12,14 @@ using CustomerProjectInf.Properties;
 
 namespace CustomerProjectInf.DatabaseLayer
 {
-    class Database
+    public class DB
     {
         private string strConn = Settings.Default.PoppelDatabaseConnectionString;
         protected SqlConnection cnMain;
 
         //  protected string aSQLstring;
 
-        public Database()
+        public DB()
         {
             try
             {

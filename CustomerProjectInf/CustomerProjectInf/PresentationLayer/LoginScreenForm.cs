@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CustomerProjectInf.CustomerNameSpace;
 
 namespace CustomerProjectInf
 {
@@ -16,11 +15,10 @@ namespace CustomerProjectInf
     {
         private String username;
         private String password;
-        private CustomerController customerController;
         public LoginScreenForm()
         {
             InitializeComponent();
-            customerController = new CustomerController();
+ 
             this.passwordTextbox.KeyPress += new KeyPressEventHandler(Keypressed);
             this.usernameTextbox.KeyPress += new KeyPressEventHandler(Keypressed);
         }
@@ -65,7 +63,7 @@ namespace CustomerProjectInf
             if (checkLogin(username, password) == true)
             {
                 //adminForm newForm = new adminForm(usernameTextbox.Text);
-                AdminForm newForm = new AdminForm(customerController, usernameTextbox.Text);
+                AdminForm newForm = new AdminForm(usernameTextbox.Text);
                 this.Visible = false;
                 newForm.Show();
                 

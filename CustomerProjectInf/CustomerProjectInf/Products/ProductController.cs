@@ -6,40 +6,41 @@ using System.Text;
 using System.Threading.Tasks;
 using CustomerProjectInf.DatabaseLayer;
 
-namespace CustomerProjectInf.Customers
+namespace CustomerProjectInf
 {
-    public class CustomerController
+    public class ProductController
     {
-        private CustomerDB customerDB;
-        private Collection<Customer> Customers;
+        
+        private  ProductDB productDB;
+        private Collection<Product> Products;
 
-        public CustomerController()
+         public ProductController()
         {
-            customerDB = new CustomerDB();
-            Customers = customerDB.AllCustomers;
+            productDB = new ProductDB();
+            Products = productDB.AllProducts;
         }
-        public Collection<Customer> AllCustomers
+        public Collection<Product> AllProducts
         {
             get
             {
-                return Customers;
+                return Products;
             }
         }
-        public void ADD(Customer customer)
+        public void ADD(Product product)
         {
             //Write code to add employee. Remember to use the DatabaseADD method from the EmployeeDB class
-            customerDB.DatabaseAdd(customer);
+            productDB.DatabaseAdd(product);
             //Also add the employee to the employees collection?
-
-            Customers.Add(customer);
+            
+            Products.Add(product);
         }
-        public Customer FindByID(string idValue)
+        public Product FindByID(string idValue)
         {
             int position = 0;
-            bool found = (idValue == Customers[position].CustomerID);
-            while (!found && position < Customers.Count)
+            bool found = (idValue == Products[position].ProductID);
+            while (!found && position < Products.Count)
             {
-                found = (idValue == Customers[position].CustomerID);
+                found = (idValue == Products[position].ProductID);
                 if (!found)
                 {
                     position += 1;
@@ -47,7 +48,7 @@ namespace CustomerProjectInf.Customers
             }
             if (found)
             {
-                return Customers[position];
+                return Products[position];
             }
             else
             {
@@ -56,3 +57,5 @@ namespace CustomerProjectInf.Customers
         }
     }
 }
+
+    

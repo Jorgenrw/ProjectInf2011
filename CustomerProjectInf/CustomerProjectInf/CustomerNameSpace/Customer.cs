@@ -10,9 +10,10 @@ namespace CustomerProjectInf.Customers
     {
         private string Id;
         private string name;
-        private int phone;
+        private string phone;
         private string Adress;
         private bool blacklisted;
+        
         public Customer()
         {
             Id = "";
@@ -24,21 +25,21 @@ namespace CustomerProjectInf.Customers
         //int phone,, bool blacklisted
         public Customer(string idVal, string nameVal, string addressVal, string phoneVal, bool blacklistedVal)
         {
-            id = idVal;
+            Id = idVal;
             name = nameVal;
             phone = phoneVal;
-            address = addressVal;
+            Adress = addressVal;
             blacklisted = blacklistedVal;
         }
         public string CustomerID
          {
              get
              {
-                 return id;
+                 return Id;
              }
              set
              {
-                 id = value;
+                 Id = value;
              }
          }
          public string CustomerName
@@ -67,15 +68,15 @@ namespace CustomerProjectInf.Customers
          {
              get
              {
-                 return address;
+                 return Adress;
              }
              set
              {
-                 address = value;
+                 Adress = value;
              }
          }
-+
-+ 
+
+ 
          public bool CustomerBlacklisted
          {
              get

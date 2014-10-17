@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CustomerProjectInf.CustomerNameSpace;
+using CustomerProjectInf.Customers;
 //This is Jørgens Branch
 //import customer class
 namespace CustomerProjectInf
@@ -22,19 +22,20 @@ namespace CustomerProjectInf
         private RectangleF tabStringCO;
         private RectangleF tabStringVCO;
         private RectangleF tabStringI;
-        private Customer customer;
-        private CustomerController customerController;
+
       
         private string curUsername = string.Empty;
         //private ArrayList Customer = new ArrayList();
         private Timer timerLabel;
-        public AdminForm(CustomerController aController, string username)
+        private Customer customer;
+        private CustomerController customerController;
+        public AdminForm(string username)
         //public AdminForm(CustomerController aController)
             
         {
             InitializeComponent();
             this.curUsername = username;
-            customerController = aController;
+
             adminFormActivatedLabel.Text = curUsername;
             //changeTextForm();
             tabStringAdmin = (RectangleF)adminPageTabControl.GetTabRect(0);
@@ -182,8 +183,8 @@ namespace CustomerProjectInf
         #region helper methods
         public void displayInList(Customer aCustomer)
         {
-            customer = aCustomer;
-            PopulateObject(customer);
+            //customer = aCustomer;
+            //PopulateObject(customer);
 
         }
         private void clearTextBoxes(TextBox tb1, TextBox tb2, TextBox tb3, TextBox tb4)
@@ -222,15 +223,17 @@ namespace CustomerProjectInf
         }
         #endregion
         #region Customer Create section
-        private Customer PopulateObject(Customer aCustomer)
+        private Customer PopulateObject()
         {
-
-
+            customer = new Customer();
+            customer.CustomerID = idCCTextbox.Text;
+            customer.CustomerName = nameCCTextbox.Text;
+            customer.CustomerAddress = adressCCTextbox.Text;
              //idCCTextbox.Text=aCustomer.customerId;
              //nameCCTextbox.Text=aCustomer.customerName;
              //adressCCTextbox.Text=aCustomer.customerAdress;
            
-            return aCustomer;
+            return customer;
         }
         
         private Boolean checkEmptyCCTextbox()
@@ -252,9 +255,9 @@ namespace CustomerProjectInf
                 //Create customer method with connection to the database
                 //add customer with all the text in every textbox to the database.
                 
-                        customer = PopulateObject(customer);
-                        customer = new Customer();
-                        customerController = new CustomerController();
+                        customer = PopulateObject();
+                        customer = new Customers.Customer();
+                        customerController = new Customers.CustomerController();
                         customerController.ADD(customer);
                         
                 
@@ -353,11 +356,11 @@ namespace CustomerProjectInf
         private void searchVCListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //get customer from database if("customer.selected"){blablabla}
-              //uncomment when pull idShowVCLabel.Text = customer.CustomerID;
-             //uncomment when pull nameShowVCLabel.Text = customer.CustomerName;
-            //uncomment when pullphoneShowVCLabel.Text = customer.CustomerPhone.ToString();
-              adressShowVCLabel.Text = customer.customerAdress;
-              //uncomment when pullblacklistShowVCLabel.Text = customer.CustomerBlacklisted.ToString();
+              idShowVCLabel.Text = customer.CustomerID;
+              nameShowVCLabel.Text = customer.CustomerName;
+              phoneShowVCLabel.Text = customer.CustomerPhone.ToString();
+              adressShowVCLabel.Text = customer.CustomerAddress;
+              blacklistShowVCLabel.Text = customer.CustomerBlacklisted.ToString();
               //disable the searchtextbox after customer clicked
               searchVCListbox.Enabled = false;
               
@@ -473,10 +476,10 @@ namespace CustomerProjectInf
         private void searchECListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if this customer is selected bla bla bla
-            //uncomment when pullidECTextbox.Text = customer.CustomerID;
-            //uncomment when pullnameECTextbox.Text = customer.CustomerName;
-            //uncomment when pullphoneECTextbox.Text = customer.CustomerPhone.ToString();
-            adressECTextbox.Text = customer.customerAdress;
+            idECTextbox.Text = customer.CustomerID;
+            nameECTextbox.Text = customer.CustomerName;
+            phoneECTextbox.Text = customer.CustomerPhone.ToString();
+            adressECTextbox.Text = customer.CustomerAddress;
 
             /*in the time given @ this project, we disable this to make the functionality easy.
             *but if it was a real project other functionality would be added, ask for explanation.

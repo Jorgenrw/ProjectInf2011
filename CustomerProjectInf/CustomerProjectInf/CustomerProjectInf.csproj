@@ -61,8 +61,12 @@
   <ItemGroup>
     <Compile Include="CustomerNameSpace\Customer.cs" />
     <Compile Include="CustomerNameSpace\CustomerController.cs" />
-    <Compile Include="DatabaseLayer\CustomerDatabase.cs" />
-    <Compile Include="DatabaseLayer\Database.cs" />
+    <Compile Include="DatabaseLayer\CustomerDB.cs" />
+    <Compile Include="DatabaseLayer\DB.cs" />
+    <Compile Include="DatabaseLayer\OrderDB.cs" />
+    <Compile Include="DatabaseLayer\ProductDB.cs" />
+    <Compile Include="Orders\Order.cs" />
+    <Compile Include="Orders\OrderController.cs" />
     <Compile Include="PresentationLayer\LoginScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +85,8 @@
       <DependentUpon>PoppelDatabaseDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Products.cs" />
+    <Compile Include="Products\Product.cs" />
+    <Compile Include="Products\ProductController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PresentationLayer\LoginScreenForm.resx">
